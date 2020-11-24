@@ -1,0 +1,154 @@
+#include "human.h"
+#include <iostream>
+
+
+using namespace std;
+
+Human::Human() { 
+	age = 0;
+	weight = 0;
+	height = 0;
+
+	cout << "Вызов конструктора по умолчанию класса Human : Human()" << endl;
+}
+
+Human::Human(int a, int w, int h) {
+	age = a;
+	weight = w;
+	height = h;
+
+	cout << "Вызов конструктора с параметром класса Human : Human(" << age << "," << weight << ","<<height<<")" << endl;
+}
+
+Human::Human(Human& black) {
+	age = black.age;
+	weight = black.weight;
+	height = black.height;
+
+	cout << "Вызов конструктора копирования класса Human : Human(Human& gay)" << endl;
+}
+
+void Human::Run(int w) {
+	weight -= w;
+	cout << "Вызов метода Run (" << weight << ")" << endl;
+}
+
+void Human::Print() {
+	cout << "Значение age: " << age << " // Значение weight: " << weight << " // Значение height: " << height << endl;
+}
+
+int Human::GetAge() {
+	return age;
+}
+
+int Human::GetWeight() {
+	return weight;
+}
+
+int Human::GetHeight() {
+	return height;
+	
+}
+
+Human :: ~Human() {
+	cout << "Вызов деструктора ~Human()" << endl;
+}
+
+/* */
+
+Man::Man() : Human() {
+	power = 0;
+	cout << "Вызов конструктора по умолчанию Man :: Man()" << endl;
+}
+
+Man::Man(int a, int w, int h, int p) : Human(a, w, h) {
+	power = p;
+	cout << "Вызов конструктора с параметрами Man :: Man(" << age << "," << weight << "," << height << "," << power << ")" << endl;
+}
+
+void Man::Print() {
+	Human::Print();
+	cout << "Значение силы" << " " << power << endl;
+}
+
+Man::Man(Man& man) :Human(man) {
+	power = man.power;
+}
+
+void Man::SetPower(int p) {
+	power = p;
+}
+
+Man :: ~Man() {
+	cout << "Вызов деструктора класса Man" << endl;
+}
+
+/* */
+
+Baby::Baby() :Man() {
+	dex = 0;
+	cout << "Вызов конструктора по умолчанию Baby :: Baby()" << endl;
+}
+
+Baby::Baby(int a, int w, int h, int p, int d) : Man(a, w, h, p) {
+	dex = d;
+	cout << "Вызов конструктора с параметрами Baby :: Baby(" << age << "," << weight << "," << height << "," << power << "," << dex << ")" << endl;
+}
+
+void Baby::Print() {
+	Man::Print();
+	cout << "Значение ловкости" << " " << dex << endl;
+}
+
+Baby::Baby(Baby& baby) :Man(baby) {
+	dex = baby.dex;
+}
+
+void Baby::SetDex(int d) {
+	dex = d;
+}
+
+Baby :: ~Baby() {
+	cout << "Вызов деструктора класса Baby" << endl;
+}
+
+/* */
+
+Woman::Woman() {
+	param = new Human;
+	cout << "Вызов конструктора по умолчанию класса Woman: Woman()" << endl;
+}
+
+Woman::Woman(Woman& woman) {
+	param = new Human(woman.param->GetAge(), woman.param->GetWeight(), woman.param->GetHeight());
+	cout << " Вызов конструктора копирования класса Woman: Woman(Woman& woman)" << endl;
+}
+
+Woman::Woman(Human& _param) {
+	param = new Human(_param.GetAge(), _param.GetWeight(), _param.GetHeight());
+	cout << "Вызов конструктора с параметрами класса Woman(Human& _param)" << endl;
+}
+
+Human* Woman::GetParam() {
+	return param;
+}
+
+void Woman::SetParam(Human& _param) {
+	param = new Human(_param);
+}
+
+void Woman::GetVozr() {
+
+	if (param->GetAge() < 16)
+		cout << "Девочка" << endl;
+
+	if (param->GetAge() > 16 && param->GetAge() < 30)
+		cout << "Девушка" << endl;
+
+	if (param->GetAge() > 30)
+		cout << "Женщина" << endl;
+}
+
+Woman::~Woman() {
+	cout << "Вызов деструктора класса Woman" << endl;
+}
