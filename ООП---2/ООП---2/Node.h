@@ -24,31 +24,51 @@ Node<T>::Node() {
 	value = NULL;
 	next = NULL;
 }
+
 template <typename T>
 Node<T>::Node(Node* _prev, T* _value, Node* _next) {
 	prev = _prev;
 	value = _value;
 	next = _next;
 }
+
 template <typename T>
 Node<T>::Node(Node<T> &node) {
 	value = node.value;
 	next = node.next;
 	prev = node.prev;
-
 }
+
 template <typename T>
 T* Node<T>::GetValue() {
 	return value;
 }
+
 template <typename T>
 Node <T>* Node<T>::GetPrev() {
 	return prev;
 }
+
 template <typename T>
 Node <T>* Node<T>::GetNext() {
 	return next;
 }
+
+template <typename T>
+void Node <T>::SetValue(T* _value) {
+	value = _value;
+}
+
+template <typename T>
+void Node <T>::SetNext(Node <T>* _next) {
+	next = _next;
+}
+
+template <typename T>
+void Node<T>::SetPrev(Node <T>* _prev) {
+	prev = _prev;
+}
+
 template <typename T>
 Node<T>::~Node<T>() {
 	cout << "Вызван деструктор класса Node";
