@@ -34,7 +34,7 @@ void Human::Run(int w) {
 }
 
 void Human::Print() {
-	cout << "Значение age: " << age << " // Значение weight: " << weight << " // Значение height: " << height << endl;
+	cout << "Значение age: " << age << " // Значение weight: " << weight << " // Значение height: " << height;
 }
 
 int Human::GetAge() {
@@ -50,25 +50,40 @@ int Human::GetHeight() {
 	
 }
 
+const char* Human::GetType() {
+	return "Human";
+}
+
+void Human::Mode() {
+	cout << "Рост = " << endl;
+	cin >> height;
+
+	cout <<"Вес = "<< endl;
+	cin >> weight;
+
+	cout << "Возраст = " << endl;
+	cin >> age;
+} 
+
 Human :: ~Human() {
 	cout << "Вызов деструктора ~Human()" << endl;
 }
 
 /* */
 
-Man::Man() : Human() {
-	power = 0;
+Man::Man() : Human(),power(0) {
+	
 	cout << "Вызов конструктора по умолчанию Man :: Man()" << endl;
 }
 
-Man::Man(int a, int w, int h, int p) : Human(a, w, h) {
-	power = p;
+Man::Man(int a, int w, int h, int p) : Human(a, w, h), power(p) {
+
 	cout << "Вызов конструктора с параметрами Man :: Man(" << age << "," << weight << "," << height << "," << power << ")" << endl;
 }
 
 void Man::Print() {
 	Human::Print();
-	cout << "Значение силы" << " " << power << endl;
+	cout << " // Значение силы: " << " " << power;
 }
 
 Man::Man(Man& man) :Human(man) {
@@ -77,6 +92,15 @@ Man::Man(Man& man) :Human(man) {
 
 void Man::SetPower(int p) {
 	power = p;
+}
+
+const char* Man::GetType() {
+	return "Man";
+}
+void Man::Mode() {
+	Human::Mode();
+	cout << "Сила = " << endl;
+	cin >> power;
 }
 
 Man :: ~Man() {

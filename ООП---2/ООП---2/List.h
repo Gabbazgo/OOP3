@@ -145,8 +145,14 @@ template<typename T>
 void List<T>::Set() {
 	if (len == 0)
 		return;
-	current->GetValue()->SetPower();
+	current->GetValue()->Mode();
 }
+template<typename T>
+void List<T>::SetCurrent(Node <T>* _current) {
+	current = _current;
+}
+
+
 template<typename T>
 List <T>::~List() {
 	cout << "Вызов деструктора класса List"<<endl;

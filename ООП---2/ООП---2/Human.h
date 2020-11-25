@@ -10,10 +10,12 @@ public:
 	Human(Human& Black);
 
 	void Run(int w);
-	void Print();
+	virtual void Print();
 	int GetAge();
 	int GetWeight();
 	int GetHeight();
+	virtual const char* GetType();
+	virtual void Mode();
 
 	virtual ~Human();
 
@@ -29,7 +31,8 @@ public:
 
 	void Print();
 	void SetPower(int p);
-
+		 const char* GetType();
+	 void Mode();
 	~Man() override;
 
 };
